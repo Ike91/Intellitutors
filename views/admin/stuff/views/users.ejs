@@ -1,0 +1,140 @@
+<div class="users">
+  <div class="table-responsive">
+       <div class="panel panel-default">
+        <div class="panel-heading">Users</div>
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name and surname</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+               <% users.forEach((user) => { %>
+              <tr>
+                <td  id="assignment-row" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="View user details"><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td> <%= user.phoneNumber %></td>
+                <td>
+                  <button type="button" class="btn acceptBtn btn-success" data-toggle="modal" data-target="#editModal">
+                      <i class="fa fa-pencil"></i> Edit
+                    </button>
+                    <button type="button" class="btn declineBtn btn-danger">
+                      <i class="fa fa-trash"></i> Delete
+                    </button>
+                </td>
+              </tr>
+               <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+</div>
+  <!-- user modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" style="color: black;">&times;</button>
+            <h4>Assignment Details</h4>
+        </div>
+        <div class="modal-body">
+          <div class="Details">
+            <p><strong><i class="fa fa-user"></i> Name</strong>: <span id="assignmentName"></span></p>
+            <hr>
+            <p><strong><i class="fa fa-envelope"></i> Email</strong>: <span id="assignmentEmail"></span></p>
+            <hr>
+            <p><strong><i class="fa fa-book"></i> Phone Number</strong>: <span id="assignmentModule"></span></p>
+            <hr>
+            <p><strong><i class="fa fa-clock"></i> Student Type</strong>: <span id="assignmentDueDate"></span></p>
+            <hr>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- edit modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit user</h5>
+      </div>
+      <div class="modal-body">
+        <!-- Add your form fields or content for editing here -->
+          <form action="/register" method="POST" class="register-form">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="text"
+                    icon="fa fa-user"
+                    name="name"
+                    placeholder="Full name"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="number"
+                    name="phoneNumber"
+                    placeholder="Phone number (+27)"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <select class="form-control" name="studentType" required>
+                    <option>---select---</option>
+                    <option value="High School Student">
+                      High School Student
+                    </option>
+                    <option value="University Student">
+                      University Student
+                    </option>
+                    <option value="College Student">
+                      College Student
+                    </option>
+                    <option value="College Student">
+                      Tutor
+                    </option>
+                    <option value="College Student">
+                      Trader
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          <button type="submit" class="btn btn-secondary saveBtn">
+            <i class="fa fa-save"></i> Save Changes
+          </button>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

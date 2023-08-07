@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include("partials/head") -%>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <%- include("partials/nav") -%>
+    <!-- login section -->
+    <div class="container-fluid login">
+      <div class="container">
+      
+      <h1>Login</h1>
+        <% const combinedErrors = Object.assign({}, validationErrors, otherErrors); %>
+          <% if (Object.keys(combinedErrors).length > 0) { %>
+            <div class="alert alert-danger">
+              <ul>
+                <% for (const errorKey in combinedErrors) { %>
+                  <% const errorMessages = combinedErrors[errorKey]; %>
+                  <% if (Array.isArray(errorMessages)) { %>
+                    <% errorMessages.forEach((errorMessage) => { %>
+                      <li><%= errorMessage %></li>
+                    <% }); %>
+                  <% } else { %>
+                    <li><%= errorMessages %></li>
+                  <% } %>
+                <% } %>
+              </ul>
+            </div>
+          <% } %>
+
+   <div class="top">
+      <div class="logo">
+         <img src="/imges/Intellitutos.png" alt="" width="100px">
+      </div>
+   </div>
+    <br>
+   <div class="bottom">
+      <form action="/login" method="POST" class="login-form">
+         <div class="form-group">
+            <input type="text" name="email" class="form-control" placeholder="Username">
+         </div>
+         <div class="form-group">
+            <input type="password" name="password" class="form-control" placeholder="Password">
+         </div>
+         <div class="form-group">
+            <label class="checkbox-inline"><input type="checkbox" value=""> Keep me sign in</label>
+         </div>
+       <button type="submit" class="btn btn-primary btn-block">Login</button>
+
+         <p class="text-center"><small><a href="#" class="btn-link">Forgot password</a></small></p>
+      </form>
+   </div>
+
+   
+        </div>
+      </div>
+    </div>
+    <!-- footer -->
+    <%- include("partials/footer") -%>
+    <!-- javascripts scripts -->
+    <%- include("partials/javascript") -%>
+  </body>
+</html>

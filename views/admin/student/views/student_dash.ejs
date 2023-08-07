@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include("partials/head") -%>
+  </head>
+  <body class="home">
+    <div class="container-fluid display-table">
+      <div class="row display-table-row">
+        <%- include("partials/sidebar") -%>
+        <div class="col-md-10 col-sm-11 display-table-cell v-align">
+          <div class="row"><%- include("partials/header") -%></div>
+          <div class="user-dashboard">
+            <% if (page === 'home') { %> <%- include('home') -%> <% } else if
+            (page === 'mail') { %> <%- include('mail') -%> <% } else if (page
+            === 'notification') { %> <%- include('notification') -%> <% } else
+            if (page === 'book') { %> <%- include('book') -%> <% } else if (page
+            === 'upload') { %> <%- include('upload') -%> <% } else if (page ===
+            'profile') { %> <%- include('profile') -%> <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include("partials/scripts") -%>
+  </body>
+</html>

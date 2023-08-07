@@ -1,0 +1,145 @@
+<title>Email Inbox</title>
+
+<style></style>
+
+<div class="email">
+  <ul class="email-list">
+    <li class="email-list-item" data-toggle="modal" data-target="#emailModal1">
+      <i class="fa fa-envelope-o"></i>
+      <span class="sender">isaac.mhlanga13@gmail.com</span>
+      <span class="date">June 1, 2023, 10:30 AM</span>
+      <span class="subject">Booked tutorial for applied mathematics</span>
+    </li>
+    <li class="email-list-item" data-toggle="modal" data-target="#emailModal2">
+      <i class="fa fa-envelope-o"></i>
+      <span class="sender">anitampho@icloud.com</span>
+      <span class="date">June 2, 2023, 1:45 PM</span>
+      <span class="subject">Booked tutorial for chemistry</span>
+    </li>
+    <!-- Add more email list items here -->
+  </ul>
+</div>
+
+<!-- Email Modals -->
+<style>
+  /* Custom styles */
+  .email-reader .modal-content {
+    border-radius: 10px;
+  }
+
+  .email-reader .modal-header {
+    background-color: #f5f5f5;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .email-reader .modal-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .email-reader .modal-body {
+    padding: 20px;
+  }
+
+  .email-reader .sender {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .email-reader .date {
+    color: #777;
+    margin-bottom: 20px;
+  }
+
+  .email-reader .subject {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .email-reader .message {
+    margin-bottom: 20px;
+  }
+
+  .email-reader .reply-textarea {
+    height: 100px;
+    resize: vertical;
+  }
+
+  .email-reader .reply-btn {
+    margin-top: 10px;
+  }
+</style>
+
+<!-- Email Modal -->
+<div id="emailModal" class="modal fade email-reader" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h4 class="modal-title">Booked, tutorals</h4>
+      </div>
+      <div class="modal-body">
+        <div class="sender">isaac.mhlanga@gmail.com</div>
+        <div class="date">June 1, 2023, 10:30 AM</div>
+        <div class="subject">Booked, tutorals</div>
+        <div class="message">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+            vehicula, arcu ut commodo sodales, felis tellus ullamcorper lacus,
+            ut fermentum elit quam ut odio.
+          </p>
+          <p>
+            Integer rhoncus mauris id arcu fermentum, ut tempus mi dapibus. Ut
+            congue bibendum urna, sed tristique mi rutrum et.
+          </p>
+        </div>
+        <textarea
+          class="form-control reply-textarea"
+          rows="3"
+          placeholder="Type your reply here..."
+        ></textarea>
+        <button type="button" class="btn btn-primary reply-btn">
+          <i class="fa fa-reply"></i> Reply
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function reply() {
+    var replyText = document.querySelector(".reply-textarea").value;
+    // Implement logic to send the reply
+    console.log("Reply:", replyText);
+    alert("Reply sent!");
+  }
+
+  // Open email modal when a list item is clicked
+  var emailListItems = document.querySelectorAll(".email-list-item");
+  for (var i = 0; i < emailListItems.length; i++) {
+    emailListItems[i].addEventListener("click", function () {
+      $("#emailModal").modal("show");
+    });
+  }
+</script>
+
+<!-- Repeat the above modal structure for other emails -->
+
+<script>
+  function reply(textareaId) {
+    var replyText = document.getElementById(textareaId).value;
+    // Implement logic to send the reply
+    console.log("Reply:", replyText);
+    alert("Reply sent!");
+  }
+</script>

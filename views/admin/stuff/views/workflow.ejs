@@ -1,0 +1,229 @@
+<% if (alertMessage) { %>
+  <div id="successAlert" class="alert alert-success">
+    <%= alertMessage %>
+  </div>
+<% } %>
+<div class="workflow">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>Assignments</strong></div>
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Module</th>
+                <th>Due date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% assignments.forEach((assignment) => { %>
+                <tr class="assignment-row">
+                  <td class="assignment-name" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="View user details"><%= assignment.name %></td>
+                  <td><%= assignment.module %></td>
+                  <td><%= assignment.dueDate %></td>
+                  <td hidden><%= assignment.email %></td>
+                  <td hidden><%= assignment.instructions %></td>
+                  <td hidden><%= assignment.fileName %></td>
+                  <td hidden><%= assignment.id %></td>
+                  <td>
+                  <% if (assignment.status === 0) { %>
+                    <button type="button" class="btn acceptBtn btn-success" onclick="acceptAction(event)">
+                      <i class="fa fa-check"></i> Accept
+                       <input type="hidden" name="id" class="form-control" value="<%= assignment.id %>">
+                    </button>
+                      <button type="button" class="btn btn-danger declineBtn"  data-dismiss="modal" data-toggle="modal" data-target="#reasonModal"> 
+                      <i class="fa fa-times"></i> Decline
+                    </button>
+                  <% } else { %>
+                    <button type="button" class="btn btn-primary acceptBtn" data-toggle="modal" data-target="#uploadModal">
+                        <i class="fa fa-upload"></i> Upload
+                     </button>
+                  <% } %>
+                </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>Tutorial Bookings</strong></div>
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Module</th>
+                <th>Mode</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% bookings.forEach((booking) => { %>
+                  <% if (booking.status === 0) { %>
+                <tr>
+                  <td><%= booking.name %></td>
+                  <td><%= booking.Module %></td>
+                  <td><%= booking.bookingType %></td>
+                   <td>
+                    <button type="button" class="btn acceptBtn btn-success" onclick="acceptAction(event)">
+                      <i class="fa fa-check"></i> Accept
+                       <input type="hidden" name="id" class="form-control" value="<%= booking.id %>">
+                    </button>
+                        <button type="button" class="btn btn-danger declineBtn"  data-dismiss="modal" data-toggle="modal" data-target="#reasonModal"> 
+                      <i class="fa fa-times"></i> Decline
+                    </button>
+                  <% } %> 
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- user modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" style="color: black;">&times;</button>
+          <h4>Assignment Details</h4>
+        </div>
+        <div class="modal-body">
+          <div class="Details">
+            <p><strong><i class="fa fa-user"></i> Name</strong>: <span id="assignmentName"></span></p>
+            <hr>
+            <p><strong><i class="fa fa-envelope"></i> Email</strong>: <span id="assignmentEmail"></span></p>
+            <hr>
+            <p><strong><i class="fa fa-book"></i> Module</strong>: <span id="assignmentModule"></span></p>
+            <hr>
+            <p><strong><i class="fa fa-clock"></i> Due date</strong>: <span id="assignmentDueDate"></span></p>
+            <hr>
+            <p><strong><i class="fa fa-file"></i> Document</strong>: <span id="assignmentFileName"></span></p>
+            <hr>
+            <p><strong><i class="fa fa-list-ul"></i> Instructions</strong>: <span id="assignmentInstructions"></span></p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reason Modal -->
+  <div class="modal fade" id="reasonModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Enter Reason for Decline</h4>
+        </div>
+        <div class="modal-body">
+          <!-- Reason input field and other relevant content -->
+          <form>
+            <div class="form-group">
+              <label for="reason">Reason:</label>
+              <input type="text" class="form-control" id="reason">
+            </div>
+            <!-- Add any additional fields or content for the reason modal -->
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- upload modal -->
+  <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: black;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="uploadModalLabel">Upload File</h4>
+        </div>
+        <div class="modal-body">
+          <form action="/uploadAnswer" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="fileInput">
+                <i class="fa fa-file"></i> Choose Assignment File
+              </label>
+              <input type="hidden" name="id" id="id2" class="form-control">
+              <input type="file" name="file" id="file-input">
+            </div>
+            <button type="submit" class="btn acceptBtn btn-primary">
+              <i class="fa fa-upload"></i> Upload
+            </button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn acceptBtn btn-primary" data-dismiss="modal"> <i class="fa fa-times"></i> Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $(".assignment-row").click(function() {
+        var name = $(this).find(".assignment-name").text();
+        var module = $(this).find("td:eq(1)").text();
+        var dueDate = $(this).find("td:eq(2)").text();
+        var email = $(this).find("td:eq(3)").text();
+        var instructions = $(this).find("td:eq(4)").text();
+        var fileName = $(this).find("td:eq(5)").text();
+        var id = $(this).find("td:eq(6)").text();
+
+        $("#assignmentName").text(name);
+        $("#assignmentModule").text(module);
+        $("#assignmentDueDate").text(dueDate);
+        $("#assignmentEmail").text(email);
+        $("#assignmentInstructions").text(instructions);
+        $("#assignmentFileName").text(fileName);
+        $("#id").val(id);
+      });
+    });
+
+    function acceptAction(event) {
+      var id = $(event.currentTarget).find("input[name=id]").val();
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/accept", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          console.log("Accept action completed successfully.");
+        } else {
+          console.error("Accept action failed with status:", xhr.status);
+        }
+      };
+      xhr.send("id=" + encodeURIComponent(id));
+    }
+
+    $(document).ready(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    $(document).ready(function() {
+      $(".assignment-row").click(function() {
+        var id = $(this).find("td:eq(6)").text();
+        $("#id2").val(id);
+      });
+    });
+  </script>
+</div>
+

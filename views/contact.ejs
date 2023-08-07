@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include("partials/head") -%>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <%- include("partials/nav") -%>
+    <!-- contact us section -->
+    <div class="container-fluid contact">
+      <div class="container">
+        <h1>Contact</h1>
+        <div class="top">
+          <div class="logo">
+            <img src="/imges/Intellitutos.png" alt="" width="100px" />
+          </div>
+        </div>
+        <div class="bottom signup">
+          <form action="/sendMail" method="POST" class="register-form">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="text"
+                    icon="fa fa-user"
+                    name="name"
+                    placeholder="Full name"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="email"
+                    name="recipientEmail"
+                    placeholder="Email"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="number"
+                    name="phoneNumber"
+                    placeholder="Phone number (+27)"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="subject"
+                    placeholder="Subject"
+                  />
+                </div>
+              </div>
+
+              <div class="col-xs-12">
+                <textarea class="form-control" name="text" rows="4" placeholder="Your message"></textarea>
+              </div>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-secondary sendBtn">
+              <i class="fa fa-envelope"></i> Send message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <%- include("partials/footer") -%>
+    <!-- javascripts scripts -->
+    <%- include("partials/javascript") -%>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+// Display the success alert with the uploaded assignment message if 'alert' is present
+  var successAlert = document.getElementById('successAlert');
+  if (successAlert) {
+    // Delay the hiding of the alert after 3 seconds
+    setTimeout(function() {
+      successAlert.style.display = 'none';
+    }, 2000);
+  }
+
+  $(document).ready(function () {
+    $('[data-toggle="offcanvas"]').click(function () {
+      $("#navigation").toggleClass("hidden-xs");
+    });
+  });
+</script>

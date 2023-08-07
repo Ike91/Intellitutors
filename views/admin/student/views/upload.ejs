@@ -1,0 +1,74 @@
+<div id="successAlert" class="alert alert-success alert-dismissible" role="alert" style="display: none;">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong id="successAlertMessage"></strong>
+</div>
+<div class="upload">
+  <br />
+  <form action="/assignment" method="post"  enctype="multipart/form-data" class="custom-form">
+    <div class="form-group">
+      <label for="module"> <i class="fa fa-book"></i> Module/Subject: </label>
+      <input type="text" name="module" id="module" class="form-control" placeholder="Module /subject" />
+      <small class="text-muted">Name of your module or subject</small>
+    </div>
+    <div class="form-group">
+      <label for="fileUpload">
+        <i class="fa fa-upload"></i> Upload File:
+      </label>
+      <input
+        type="file"
+        name="file"
+        id="fileUpload"
+        class="form-control-file"
+        multiple
+      />
+      <small class="text-muted"
+        >Please choose the file you want to upload.</small
+      >
+    </div>
+    <div class="form-group">
+      <label for="instructions">
+        <i class="fa fa-pencil"></i> Instructions:
+      </label>
+      <textarea
+        id="instructions"
+        name="instructions"
+        class="form-control"
+        rows="5"
+        placeholder="Additional instructions"
+      ></textarea>
+      <small class="text-muted"
+        >Enter any specific instructions or additional details for the
+        upload.</small
+      >
+    </div>
+    <div class="form-group">
+      <label for="dueDate">
+        <i class="fa fa-calendar"></i> Expected Deadline:
+      </label>
+      <input type="text" name="dueDate" id="deadline" class="form-control" placeholder="Due date"/>
+      <small class="text-muted"
+        >Select the date by which you expect the document to be
+        completed.</small
+      >
+    </div>
+    <button type="submit" class="btn btn-primary">
+      <i class="fa fa-paper-plane"></i> Submit
+    </button>
+  </form>
+  <% const combinedErrors = Object.assign({}, validationErrors, otherErrors); %>
+  <% if (Object.keys(combinedErrors).length > 0) { %>
+  <div class="alert alert-danger">
+    <ul>
+      <% for (const errorKey in combinedErrors) { %> <% const errorMessages =
+      combinedErrors[errorKey]; %> <% if (Array.isArray(errorMessages)) { %> <%
+      errorMessages.forEach((errorMessage) => { %>
+      <li><%= errorMessage %></li>
+      <% }); %> <% } else { %>
+      <li><%= errorMessages %></li>
+      <% } %> <% } %>
+    </ul>
+  </div>
+  <% } %>
+</div>
+<br />
+

@@ -1,0 +1,95 @@
+<div class="row" style="margin-top: 3rem">
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">High School Students</h3>
+      </div>
+      <div class="panel-body">
+        <h4>Count: 50</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">College Students</h3>
+      </div>
+      <div class="panel-body">
+        <h4>Count: 80</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">University Students</h3>
+      </div>
+      <div class="panel-body">
+        <h4>Count: 120</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Pie Chart</h3>
+      </div>
+      <div class="panel-body">
+        <canvas id="pieChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Bar Chart</h3>
+      </div>
+      <div class="panel-body">
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script>
+  // Pie Chart
+  var pieData = {
+    labels: ["High School Students", "College Students", "University Students"],
+    datasets: [
+      {
+        data: [50, 80, 120],
+        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+      },
+    ],
+  };
+
+  var pieChartCanvas = document.getElementById("pieChart").getContext("2d");
+  new Chart(pieChartCanvas, {
+    type: "pie",
+    data: pieData,
+  });
+
+  // Bar Chart
+  var barData = {
+    labels: ["High School Students", "College Students", "University Students"],
+    datasets: [
+      {
+        data: [40, 80, 120],
+        backgroundColor: "#36A2EB",
+      },
+    ],
+  };
+
+  var barChartCanvas = document.getElementById("barChart").getContext("2d");
+  new Chart(barChartCanvas, {
+    type: "bar",
+    data: barData,
+  });
+</script>

@@ -1,0 +1,61 @@
+<div class="profile">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="text-center">
+          <img class="profile-image" src="/imges/Intellitutos.png" alt="Profile Picture" />
+          <h2> <%=  user.name  %></h2>
+          <hr>
+        </div> 
+         <div class="details">
+           
+            <p><i class="fa fa-user"></i> Name: <%=  user.name  %></p>
+            <p><i class="fa fa-envelope"></i> Email: <%=  user.email  %></p>
+            <p><i class="fa fa-graduation-cap"></i> Current Grade: 9th</p>
+            <p><i class="fa fa-line-chart"></i> Average: 85%</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <h3>Performance</h3>
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+         <canvas id="myChart" width="400" height="203"></canvas>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+     const testNames = ['Test 1', 'Test 2', 'June exam', 'Prelim exam'];
+     const scores = [60, 90, 95, 70];
+
+      const ctx = document.getElementById('myChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: testNames,
+          datasets: [{
+            label: 'Scores',
+            data: scores,
+            backgroundColor: '#0e1a35',
+            borderColor: '#0e1a35',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100
+            }
+          }
+        }
+      });
+    });
+  </script>
+
+
+ 
+

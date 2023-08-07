@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include("partials/head") -%>
+  </head>
+  <body class="home">
+    <div class="container-fluid display-table">
+      <div class="row display-table-row">
+        <%- include("partials/sidebar") -%>
+
+        <div class="col-md-10 col-sm-11 display-table-cell v-align">
+          <div class="row"><%- include("partials/header") -%></div>
+          <div class="user-dashboard">
+            <% if (page === 'dashboard') { %> <%- include('dashboard') -%> <% }
+            else if (page === 'users') { %> <%- include('users') %> <% } else if
+            (page === 'workflow') { %> <%- include('workflow') -%> <% } else if
+            (page === 'home') { %> <%- include('home') -%> <% } else if (page
+            === 'calendar') { %> <%- include('calendar') -%> <% } else if (page
+            === 'settings') { %> <%- include('settings') -%> <% } else if (page
+            === 'statistics') { %> <%- include('statistics') -%> <% } else if
+            (page === 'email') { %> <%- include('email') -%> <% } else if (page
+            === 'notifications') { %> <%- include('notifications') -%> <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include("partials/scripts") -%>
+  </body>
+</html>

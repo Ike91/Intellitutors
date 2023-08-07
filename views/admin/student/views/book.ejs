@@ -1,0 +1,75 @@
+<div id="successAlert" class="alert alert-success alert-dismissible" role="alert" style="display: none;">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong id="successAlertMessage"></strong>
+</div>
+<div class="book">
+  <br />
+  <div
+    id="successAlert"
+    class="alert alert-success"
+    role="alert"
+    style="display: none"
+  >
+    Tutorial booked successfully
+  </div>
+  <form action="/book" method="post" class="booking-form">
+    <div class="form-group">
+      <label for="bookingType">
+        <i class="fa fa-book"></i> Booking Type:
+      </label>
+      <select id="bookingType" name="bookingType" class="form-control">
+        <option value="online">Online</option>
+        <option value="inperson">In Person</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="bookingDate">
+        <i class="fa fa-calendar"></i> Date of Tutorial:
+      </label>
+      <input type="date" name="date" id="bookingDate" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="bookingTime"> <i class="fa fa-clock-o"></i> Time: </label>
+      <input type="time" name="time" id="bookingTime" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="bookingVenue">
+        <i class="fa fa-map-marker"></i> Venue:
+      </label>
+      <input
+        type="text"
+        name="venue"
+        id="bookingVenue"
+        class="form-control"
+        placeholder="Enter the venue"
+      />
+    </div>
+    <div class="form-group">
+      <label for="moduleSubject">
+        <i class="fa fa-bookmark"></i> Module/Subject:
+      </label>
+      <input
+        type="text"
+        id="moduleSubject"
+        name="module"
+        class="form-control"
+        placeholder="Enter the module/subject"
+      />
+    </div>
+    <div class="form-group">
+      <label for="bookingHours">
+        <i class="fa fa-hourglass"></i> Number of Hours:
+      </label>
+      <input
+        type="number"
+        name="hours"
+        id="bookingHours"
+        class="form-control"
+        placeholder="Enter the number of hours"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">
+      <i class="fa fa-check"></i> Book Now
+    </button>
+  </form>
+</div>

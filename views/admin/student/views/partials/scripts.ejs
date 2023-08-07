@@ -1,0 +1,176 @@
+<!-- boostraps and jquery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- home charts -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@3.28.1/dist/apexcharts.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $('[data-toggle="offcanvas"]').click(function () {
+      $("#navigation").toggleClass("hidden-xs");
+    });
+  });
+
+  //profile script
+  function showForm() {
+    $("#updateModal").modal("show");
+  }
+
+  // Chart data
+  var performanceData = {
+    labels: ["Test 1", "Test 2", "Test 3", "Current Grade"],
+    datasets: [
+      {
+        label: "Performance",
+        data: [80, 85, 90, 88],
+        backgroundColor: "#0e1a35",
+        borderColor: "#0e1a35",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  // Chart options
+  var performanceOptions = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+            max: 100,
+          },
+        },
+      ],
+    },
+  };
+
+  // Initialize chart
+  window.onload = function () {
+    var performanceCtx = document
+      .getElementById("performanceChart")
+      .getContext("2d");
+    new Chart(performanceCtx, {
+      type: "bar",
+      data: performanceData,
+      options: performanceOptions,
+    });
+  };
+
+  //profile landing page
+  // Progress Chart
+  var options = {
+    series: [
+      {
+        name: "Progress",
+        data: [95, 80, 75],
+      },
+    ],
+    chart: {
+      type: "bar",
+      height: 190,
+    },
+    plotOptions: {
+      bar: {
+        horizontal: true,
+        colors: {
+          ranges: [
+            {
+              from: 0,
+              to: 74,
+              color: "#ff0000",
+            },
+            {
+              from: 75,
+              to: 89,
+              color: "#ffc107",
+            },
+          ],
+        },
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    xaxis: {
+      categories: ["Accounting", "Physics", "Mathematics"],
+    },
+    tooltip: {
+      y: {
+        formatter: function (val) {
+          return val + "%";
+        },
+      },
+    },
+  };
+
+  var chart = new ApexCharts(
+    document.querySelector("#progress-chart"),
+    options
+  );
+  chart.render();
+
+  //mail
+  function reply() {
+    var replyText = document.querySelector(".reply-textarea").value;
+    // Implement logic to send the reply
+    console.log("Reply:", replyText);
+    alert("Reply sent!");
+  }
+
+  // Open email modal when a list item is clicked
+  var emailListItems = document.querySelectorAll(".email-list-item");
+  for (var i = 0; i < emailListItems.length; i++) {
+    emailListItems[i].addEventListener("click", function () {
+      $("#emailModal").modal("show");
+    });
+  }
+
+  function reply(textareaId) {
+    var replyText = document.getElementById(textareaId).value;
+    // Implement logic to send the reply
+    console.log("Reply:", replyText);
+    alert("Reply sent!");
+  }
+
+  
+  //upload, for the alert to function properly
+  const successAlert = document.getElementById('successAlert');
+
+  function hideSuccessAlert() {
+    successAlert.style.display = 'none';
+  }
+  setTimeout(hideSuccessAlert, 5000);
+
+  // Retrieve the value of the 'alert' query parameter from the URL
+const urlParams = new URLSearchParams(window.location.search);
+const alertMessage = urlParams.get('alert');
+
+// Display the success alert with the uploaded assignment message if 'alert' is present
+if (alertMessage) {
+  const successAlert = document.getElementById('successAlert');
+  const successAlertMessage = successAlert.querySelector('strong');
+  successAlertMessage.textContent = alertMessage;
+  successAlert.style.display = 'block';
+}
+
+//workflow scripts
+  $(document).ready(function() {
+        $(".assignment-row").click(function() {
+            var name = $(this).find("td:eq(0)").text();
+            var module = $(this).find("td:eq(1)").text();
+            var dueDate = $(this).find("td:eq(2)").text();
+            var email = $(this).find("td:eq(3)").text();
+            var instructions = $(this).find("td:eq(4)").text();
+            var filename = $(this).find("td:eq(5)").text();
+            var inputmail = $(this).find("td:eq(3)").text();
+
+            $("#assignmentName").text(name);
+            $("#assignmentModule").text(module);
+            $("#assignmentDueDate").text(dueDate);
+             $("#assignmentemail").text(email);
+            $("#assignmentinstructions").text(instructions);
+            $("#assignmentfilename").text(filename);
+            $("#emailInput").val(inputmail);
+        });
+    });
+</script>

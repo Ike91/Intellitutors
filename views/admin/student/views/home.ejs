@@ -1,0 +1,119 @@
+<div class="student">
+  <h1><i class="fa fa-graduation-cap"></i> Student Dashboard</h1>
+  <p>
+    The student dashboard offers a summary of your meetings, submitted
+    assignments, available downloads, and overall progress. Stay on top of your
+    academic journey with ease.
+  </p>
+  <hr />
+  <div class="row">
+    <div class="col-md-12">
+      <h3><i class="fa fa-line-chart"></i> Progress Chart</h3>
+      <div id="progress-chart"></div>
+    </div>
+  </div>
+  <hr />
+  <!-- Display the meeting -->
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3><i class="fa fa-calendar"></i> Next Meeting</h3>
+      <!-- meetings.ejs -->
+      <!-- meetings.ejs -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Venue</th>
+           
+            <th>Price to be Paid</th>
+              <th>Status</th>
+          </tr>
+        </thead>
+      <tbody>
+  <% meeting.forEach((meeting) => { %>
+  <tr class="row-clickable" data-toggle="modal" data-target="#myModal" data-date="<%= meeting.date.toLocaleDateString() %>" data-time="<%= meeting.time %>" data-venue="<%= meeting.venue %>" data-hours="<%= meeting.hours %>" data-price="<%= meeting.price %>">
+    <td><%= meeting.date.toLocaleDateString() %></td>
+    <td><%= meeting.time %></td>
+    <td><%= meeting.venue %></td>
+   
+    <td>R350</td>
+     <% if (meeting.status === 0) { %>
+      <td>
+        <span class="label label-danger" style="display: inline-block; width: 85px;">
+          <i class="fa fa-times"></i> Declined</span>
+      </td>
+    <% } else if (meeting.status === 1) { %>
+      <td>
+       <span class="label label-success" style="display: inline-block; width: 85px;">
+          <i class="fa fa-check"></i> Accepted
+       </span>
+      </td>
+    <% } else if (meeting.status === 2) { %>
+      <td>
+        <span class="label label-warning" style="display: inline-block; width: 85px;">
+          <i class="fa fa-spinner fa-pulse"></i> Waiting List</span>
+      </td>
+    <% } %>
+   
+  </tr>
+  <% }) %>
+</tbody>
+
+      </table>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-md-12">
+      <h3><i class="fa fa-download"></i> Available Assignments</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Assignment</th>
+            <th>Due date</th>
+            <!-- <th>Price</th> -->
+            <th>status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+       <tbody>
+    <% assignment.forEach((assignment) => { %>
+      <tr>
+        <td><%= assignment.fileName %></td>
+        <td><%= assignment.dueDate %></td>
+        <!-- <td>R200</td> -->
+       <td>
+          <% let statusHtml; %>
+          <% if (assignment.status === 0) { %>
+            <% statusHtml = '<span class="label label-warning " style="display: inline-block; width: 85px;"><i class="fa fa-spinner fa-pulse"></i> Received</span>'; %>
+          <% } else if (assignment.status === 1) { %>
+            <% statusHtml = '<span class="label label-success" style="display: inline-block; width: 85px;"><i class="fa fa-check"></i> In Progress</span>'; %>
+          <% } else if (assignment.status === 2) { %>
+            <% statusHtml = '<span class="label label-danger" style="display: inline-block; width: 85px;"><i class="fa fa-times"></i> Declined</span>'; %>
+          <% } else { %>
+            <% statusHtml = 'Unknown Status'; %>
+          <% } %>
+          <%- statusHtml %>
+        </td>
+    
+         <td>
+          <% if (assignment.payment_status === 0) { %>
+            <button class="pay-button download-button">
+              <i class="fa fa-money"></i> Pay
+            </button>
+          <% } else if (assignment.payment_status === 1) { %>
+            <button class="download-button">
+              <i class="fa fa-download"></i> Download
+            </button>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+      </table>
+    </div>
+  </div>
+</div>
